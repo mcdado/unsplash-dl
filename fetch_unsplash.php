@@ -47,16 +47,16 @@ $redirected = array();
 foreach ( $shortlinks as $link ) {
 	$parsed_link = parse_url($link);
 	$file_name = basename($parsed_link['path']);
+	$link = str_replace(" ", "%20", $link);
 	
 	try {
 		$connection = fopen($link, 'rb');
-		
 	} catch (Exception $ex){
 		echo $ex;
 	}
 	
 	if ( $connection ) {
-		fopen($file_name, $connection);
+		file_put_contents($file_name, $connection);
 		echo "File " . $file_name . " saved", "\n";
 	}
 }
