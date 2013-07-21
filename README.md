@@ -12,3 +12,9 @@ Setup
 3. cp com.unsplash.mcdado.plist ~/Library/LaunchAgents/
 4. launchctl load ~/Library/LaunchAgents/com.unsplash.mcdado.plist
 5. Setup your preferred OS X Screensaver to look into ~/Pictures/Unsplash
+
+Notes
+-----
+
+* Requires [pecl_http](http://pecl.php.net/package/pecl_http). Because I'm lazy curl is ugly. You can also install it with homebrew (php5x-http).
+* It's very ugly code, but it's also just an experiment and I wanted to make it work quickly...
