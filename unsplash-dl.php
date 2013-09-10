@@ -64,7 +64,7 @@ class UnsplashFetch {
     }
     
     private function sendLog($message){
-        fwrite($this->log_handle, date('Y-m-d H:i:s') . " " . $message . "\n");
+        fwrite($this->log_handle, "[" . date('Y-m-d H:i:s') . "]" . " " . $message . "\n");
     }
     
     private function getRedirectUrl($url) {
@@ -103,7 +103,7 @@ class UnsplashFetch {
                     $this->sendLog("Succesfully downloaded " . $file_name);
                     
                 } else {
-                    $this->sendLog( $file_name . " reported a status code: " . $r->getResponseCode() );
+                    $this->sendLog( " " . $file_name . " reported a status code: " . $r->getResponseCode() );
                      
                 }
             } catch (HttpException $ex) {
@@ -117,7 +117,7 @@ class UnsplashFetch {
 }
 
 $unsplash = new UnsplashFetch(  'http://unsplash.com/api/read',
-                                '/Users/' . get_current_user() . '/Pictures/Unsplash/Test',
+                                '/Users/' . get_current_user() . '/Pictures/Unsplash',
                                 '/Users/' . get_current_user() . '/Library/Logs/com.mcdado.unsplash.log');
 $unsplash->init();
 $unsplash->terminate();
