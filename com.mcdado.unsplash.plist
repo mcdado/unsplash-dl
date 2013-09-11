@@ -6,7 +6,7 @@
     <string>com.mcdado.unsplash</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/usr/bin/local/php</string>
+        <string>/usr/local/bin/php</string>
         <string>~/Library/Scripts/unsplash-dl.php</string>
     </array>
     <key>RunAtLoad</key>

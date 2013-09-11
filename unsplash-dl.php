@@ -35,7 +35,7 @@ class UnsplashFetch {
         $r = new HttpRequest($this->feed, HttpRequest::METH_GET);
         
         if ( file_exists( $this->location . '/unsplash.rss' ) )
-            $r->setOptions(array('lastmodified' => filemtime($this->location . '/feed.rss')));
+            $r->setOptions(array('lastmodified' => filemtime($this->location . '/unsplash.rss')));
         
         $r->addHeaders(array('User-Agent' => 'unsplash-dl'));
         $r->addQueryData(array('type' => 'photo'));
@@ -45,7 +45,7 @@ class UnsplashFetch {
             $r->send();
             
             if ($r->getResponseCode() == 200) {
-                file_put_contents($this->location . '/feed.rss', $r->getResponseBody() );
+                file_put_contents($this->location . '/unsplash.rss', $r->getResponseBody() );
                 $body = simplexml_load_string($r->getResponseBody());
                 
                 foreach ( $body->posts->post as $entry ) {
