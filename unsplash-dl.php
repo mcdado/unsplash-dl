@@ -20,7 +20,7 @@ class UnsplashFetch {
             $this->log_file = "";
         } else {
             $this->log_file = $log_path;
-            $this->log_handle = fopen($this->log_file, 'a') or die('Cannot open log file.');
+            $this->log_handle = fopen($this->log_file, 'a') or die('Cannot open log file');
         }
         
         $this->client = new http\Client;
@@ -154,7 +154,8 @@ class UnsplashFetch {
 
 $unsplash = new UnsplashFetch(  'http://unsplash.com/api/read',
                                 getenv("HOME") . '/Pictures/Unsplash',
-                                true);
+                                true,
+                                getenv("HOME") . '/Library/Logs/com.mcdado.unsplash.log');
 $unsplash->init();
 $unsplash->terminate();
 
