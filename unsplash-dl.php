@@ -13,9 +13,12 @@ class UnsplashFetch {
             $downloads;
                 
     function __construct($url, $picture_path, $log = false, $log_path = "") {
+        
+        $this->client = new http\Client;
         $this->feed = $url;
         $this->logging = $log;
         $this->location = $picture_path;
+        
         if ( $log_path == "") {
             $this->log_file = "";
         } else {
@@ -23,12 +26,9 @@ class UnsplashFetch {
             $this->log_handle = fopen($this->log_file, 'a') or die('Cannot open log file');
         }
         
-        $this->client = new http\Client;
-        
         if (!file_exists($picture_path)) {
             mkdir($picture_path, 0777, true);
         }
-        
         
     }
     
@@ -47,17 +47,16 @@ class UnsplashFetch {
         
         $request = new http\Client\Request("GET", $this->feed, array("User-Agent" => "Unsplash Fetch (https://github.com/mcdado/unsplash-dl)"));
         $request->addQuery(new http\QueryString("type=photo"));
-
+        
         if ( file_exists($this->location . '/unsplash.rss') ) {
             $mod_date = filemtime($this->location . '/unsplash.rss');
             $request->setHeader('If-Modified-Since', gmdate('D, d M Y H:i:s \G\M\T', $mod_date)); // RFC 2616 formatted date
         }
-
+        
         try {
             $this->client->enqueue($request)->send();
             $response = $this->client->getResponse($request);
-            
-            if ($response->getResponseCode() == 200) {
+            if ( $response->getResponseCode() == 200 ) {
                 $body = $response->getBody();
                 file_put_contents($this->location . '/unsplash.rss', $body);
                 $parsed_body = simplexml_load_string($body);
