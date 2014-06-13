@@ -45,7 +45,7 @@ class UnsplashFetch {
         
         $this->sendLog("Unsplash-dl started.");
         
-        $request = new http\Client\Request("GET", $this->feed, array("User-Agent" => "unsplash-dl (https://github.com/mcdado/unsplash-dl)"));
+        $request = new http\Client\Request("GET", $this->feed, array("User-Agent" => "Unsplash Fetch (https://github.com/mcdado/unsplash-dl)"));
         $request->addQuery(new http\QueryString("type=photo"));
 
         if ( file_exists($this->location . '/unsplash.rss') ) {
