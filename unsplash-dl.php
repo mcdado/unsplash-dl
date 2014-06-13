@@ -134,7 +134,7 @@ class UnsplashFetch {
         }
 
         foreach ($this->downloads as $d_link) {
-            $d_request = new http\Client\Request("GET", $d_link);
+            $d_request = new http\Client\Request("GET", $d_link, array("User-Agent" => "Unsplash Fetch (https://github.com/mcdado/unsplash-dl)"));
             try {
                 $this->client->enqueue($d_request)->send();
                 $d_name = basename($d_request->getRequestUrl());

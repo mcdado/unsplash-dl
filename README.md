@@ -1,8 +1,9 @@
 Unsplash Fetch (unsplash-dl)
 ==============
 
-A simple script to download pictures from the tumblelog Unsplash.
+A simple script to download pictures from the tumblelog [Unsplash](http://unsplash.com/).
 Runs in the background with launchd on OS X, could be adapted on other systems.
+See also [New Old Stock Fetch](https://github.com/mcdado/newoldstock-dl)
 
 Setup
 -----
