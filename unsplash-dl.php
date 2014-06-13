@@ -49,7 +49,8 @@ class UnsplashFetch {
         $request->addQuery(new http\QueryString("type=photo"));
 
         if ( file_exists($this->location . '/unsplash.rss') ) {
-            $request->setHeader('If-Modified-Since', filemtime($this->location . '/unsplash.rss'));
+            $mod_date = filemtime($this->location . '/unsplash.rss');
+            $request->setHeader('If-Modified-Since', gmdate('D, d M Y H:i:s \G\M\T', $mod_date)); // RFC 2616 formatted date
         }
 
         try {
@@ -74,9 +75,11 @@ class UnsplashFetch {
                 unset($parsed_body);
             } else {
                 $this->sendLog("Feed Response Code: " . $response->getResponseCode() );
+                return;
             }
         } catch (http\Exception $ex) {
             $this->sendLog("Feed Raised Exception: " . $ex);
+            return;
         }
         
         $this->sendLog("Beginning to fetch links.");
