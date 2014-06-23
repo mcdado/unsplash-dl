@@ -77,7 +77,7 @@ class UnsplashFetch {
                 return;
             }
         } catch (http\Exception $ex) {
-            $this->sendLog("Feed Raised Exception: " . $ex);
+            $this->sendLog("Feed Raised Exception: " . $ex->message);
             return;
         }
         
@@ -109,7 +109,7 @@ class UnsplashFetch {
                 return $headers['Location'];
             }
         } catch (Exception $ex) {
-            $this->sendLog("Couldn't get redirected URL.");
+            $this->sendLog("Couldn't get redirected URL: " . $url);
         }
         $this->sendLog("`-> No redirection.");
         return false;
@@ -148,7 +148,7 @@ class UnsplashFetch {
 
                 }
             } catch (http\Exception $ex) {
-                $this->sendLog("Raised Exception: " . $ex);
+                $this->sendLog("Raised Exception: " . $ex->message);
             }
         }
     }
