@@ -1,5 +1,6 @@
 # Unsplash Fetch (unsplash-dl) #
-==============
+
+**IMPORTANT: This script is currently not working, since it was using the Tumblr API to find the pictures (Unsplash seems to have migrated away from Tumblr). An updated version of this script is *not* work in progress. I could find the time to update it anytime, or not. In the meanwhile, you could check [Tumblr Photo Fetch](https://github.com/mcdado/TumblrPhotoFetch/) and use it with your favorite site**.
 
 A simple script to download pictures from the tumblelog [Unsplash](http://unsplash.com/).
 Runs in the background with launchd on OS X, could be adapted on other systems.
